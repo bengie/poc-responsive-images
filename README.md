@@ -2,6 +2,10 @@
 
 Short test case if we could use [Responsive images](https://dev.opera.com/articles/responsive-images/) in upcoming projects for De Persgroep.
 
+## Demo
+
+http://bengie.github.io/poc-responsive-images/
+
 ## TL;DR
 
 Yes, we can. And for mobile your page size will decrease with ±40% (tested on the included pages)
