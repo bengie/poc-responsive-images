@@ -31,7 +31,7 @@ We need a [polyfill](http://scottjehl.github.io/picturefill/) to make it cross-b
 4. With the polyfill: No JS = no image, just an `alt=""` attribute
 5. Big initial setup
 6. Support for IE8
-	* `picture`: the fallback syntax needs the larger desktop image so you'' probably end up with an extra media query
+	* `picture`: the fallback syntax needs the larger desktop image so you'll probably end up with an extra media query
 	* same for `sizes=""`
 
 
