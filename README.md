@@ -20,8 +20,8 @@ We need a [polyfill](http://scottjehl.github.io/picturefill/) to make it cross-b
 
 1. You will save the end user a lot of bandwidth and thus money
 2. Your page size will decrease (see table below)
-3. Brwoser depends which image it will use depending bandwidth, screen resolution, connection speed, screen density, viewport width, ...
-4. thanks to art directio you gain a lot of control
+3. Browser depends which image it will use depending bandwidth, screen resolution, connection speed, screen density, viewport width, ...
+4. Thanks to art direction you gain a lot of control
 
 ### Contra
 
