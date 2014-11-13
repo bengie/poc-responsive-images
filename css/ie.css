@@ -1,0 +1,31 @@
+.container {
+	width: 968px;
+}
+.col {
+	float: left;
+}
+.col--primary {
+	width: 64%;
+	padding-right: 10px;
+}
+.col--secondary {
+	width: 36%;
+	padding-left: 10px;
+	padding-top: 20px;
+}
+.ankeiler__picture {
+	float: left;
+	width: 125px;
+}
+.ankeiler__img {
+	width: 125px;
+}
+.ankeiler__body {
+	margin-left: 135px;
+}
+.article__title {
+	font-size: 3em;
+}
+.article__subtitle {
+	font-size: 2em;
+}

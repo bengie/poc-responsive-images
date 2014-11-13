@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POC Responsive Images</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lt IE 9]>
+        <link rel=stylesheet href="css/ie.css">
+    <![endif]-->
+    <script src="js/html5shiv.min.js"></script>
+</head>
+<body>
+    <header class="page-header">
+        <div class="container">
+            <nav class="nav nav--primary" role="navigation">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">With Polyfill</a></li>
+                    <li class="nav__item"><a href="without.html" class="nav__link">Without Polyfill</a></li>
+                    <li class="nav__item"><a href="legacy.html" class="nav__link">Legacy</a></li>
+                    <li class="nav__item is-active"><a href="overzicht.html" class="nav__link">Overzicht</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-page-content" role="main">
+        <section class="page-main-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col col--primary">
+                        <article class="article">
+                            <header class="article__header">
+                                <h1 class="article__title">Responsive Images</h1>
+                                <p class="article__subtitle">Een overzicht</p>
+                            </header>
+                            <div class="article__body">
+                                <h4 class="article__body__title">Technicalities</h4>
+                                <ol class="article__list">
+                                    <li>Polyfilling met <code>picturefill.js</code> voor oudere browsers</li>
+                                    <li>IE9 heeft nog een onsemantisch element nodig <br> <code>&lt;!--[if IE 9]&gt;&lt;video style=&quot;display: none;&quot;&gt;&lt;![endif]--&gt;</code></li>
+                                    <li><code>&lt;picture&gt;</code> is voor art direction</li>
+                                    <li><code>&lt;img sizes=&quot;&quot; srcset=&quot;&quot;&gt;</code> is voor responsive images</li>
+                                    <li>Je mag eender welke <code>[length]</code> (vw, px, em, ...) value gebruiken voor <code>sizes="</code> </li>
+
+                                </ol>
+                                <h4 class="article__body__title">Pro</h4>
+                                <!-- <p class="article__paragraph"></p> -->
+                                <ol class="article__list">
+                                    <li>Je bespaart de gebruiker bandbreedte, en dus geld</li>
+                                    <li>Je pagina wordt lichter: Getest met deze POC
+                                        <table class="table table--bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>zonder polyfill</th>
+                                                    <th>met polyfill</th>
+                                                    <th>legacy</th>
+                                                    <th>Winst</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>mobile</td>
+                                                    <td>95.5kB</td>
+                                                    <td>103kB</td>
+                                                    <td>169kB</td>
+                                                    <td class="success">+39.3%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>tablet</td>
+                                                    <td>128kB</td>
+                                                    <td>135kB</td>
+                                                    <td>169kB</td>
+                                                    <td class="success">+21.3%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>desktop</td>
+                                                    <td>171kB*</td>
+                                                    <td>179kB*</td>
+                                                    <td>169kB</td>
+                                                    <td class="error">-6%*</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <small>* omdat er meer HTML is</small>
+                                        </li>
+                                    <li>De browser beslist welke afbeelding hij toont, naargelang verbindingssnelheid, screen density (retina), viewport width, ...</li>
+                                    <li>Met art direction heb je meer controle</li>
+                                </ol>
+                                <h4 class="article__body__title">Contra</h4>
+                                <!-- <p class="article__paragraph"></p> -->
+                                <ol class="article__list">
+                                    <li>Extra lijnen CSS en HTML, <small>alhoewel dat het voor CSS wel eens goed kan meevallen</small></li>
+                                    <li>Is nog buggy. Bvb Chrome heeft moeite met absolute values voor <code>sizes=""</code>. Je moet refreshen om bij breakpoint change de correcte image te krijgen</li>
+                                    <li>inline media queries</li>
+                                    <li>Geen JS = geen afbeeldingen, enkel een <code>alt=""</code>. Voor accessibility en crawlers moet het <code>alt</code> atrribuut dus ingevuld zijn, maar dat doen we toch altijd ;-)</li>
+                                    <li>Kan een gepruts worden om dit initieel allemaal op te zetten en meer afbeeldingen nodig</li>
+                                    <li>Support in IE8:
+                                        <ul>
+                                            <li>
+                                                <code>picture</code>: eist dat je de fallback <code>&lt;img&gt;</code> voorziet van een grote afbeelding
+                                            </li>
+                                            <li><code>sizes</code>: de <code>[length]</code> voor non media query moet die zijn voor IE8</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </article>
+                        <aside class="article-aside">
+                        </aside>
+                    </div>
+                    <div class="col col--secondary">
+                        <div class="widget">
+                            <h5 class="widget__title">Nuttige links</h5>
+                            <ul>
+                                <li><a href="https://dev.opera.com/articles/responsive-images/">Responsive Images: Use Cases and Documented Code Snippets to Get You Started</a></li>
+                                <li><a href="http://blog.cloudfour.com/dont-use-picture-most-of-the-time/">When to use picture</a></li>
+                                <li><a href="http://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/">Responsive Images: If you’re just changing resolutions, use srcset.</a></li>
+                                <li><a href="https://dev.opera.com/articles/native-responsive-images/">Native Responsive Images</a></li>
+                                <li><a href="http://www.html5rocks.com/en/tutorials/responsive/picture-element/">Built-in Browser Support for Responsive Images</a></li>
+                                <li><a href="http://www.filamentgroup.com/lab/to-picturefill.html">To Picturefill, or not to Picturefill</a></li>
+                                <li><a href="https://nostrongbeliefs.com/responsive-images/">Responsive images</a></li>
+                                <li><a href="http://demosthenes.info/blog/936/Responsive-Images-For-Designers-The-HTML5-picture-element">Responsive Images For Designers: The HTML5 picture element</a></li>
+                                <li><a href="http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset/">Responsive Images Done Right: A Guide To picture And srcset</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer" role="contentinfo">
+
+    </footer>
+</body>
+</html>

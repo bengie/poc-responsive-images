@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POC Responsive Images</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lt IE 9]>
+        <link rel=stylesheet href="css/ie.css">
+    <![endif]-->
+    <script src="js/html5shiv.min.js"></script>
+</head>
+<body>
+    <header class="page-header">
+        <div class="container">
+            <nav class="nav nav--primary" role="navigation">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">With Polyfill</a></li>
+                    <li class="nav__item is-active"><a href="without.html" class="nav__link">Without Polyfill</a></li>
+                    <li class="nav__item"><a href="legacy.html" class="nav__link">Legacy</a></li>
+                    <li class="nav__item"><a href="overzicht.html" class="nav__link">Overzicht</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-page-content" role="main">
+        <picture class="chapeau">
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source media="(min-width: 968px)" srcset="img/cricket-1440x500.jpg">
+            <source media="(min-width: 768px)" srcset="img/surfer-1000x400.jpg">
+            <!--[if IE 9]></video><![endif]-->
+            <img src="img/para-300x480.jpg" alt="" class="chapeau__img">
+        </picture>
+        <section class="page-main-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col col--primary">
+                        <article class="article">
+                            <header class="article__header">
+                                <h1 class="article__title">Responsive Images, a Proof Of Concept</h1>
+                                <p class="article__subtitle">Met Polyfill</p>
+                                <p class="article__intro">Verschillende afbeeldingen aanbieden en de browser laten beslissen welke hij gebruikt. Dit naargelang DPI, bandbreedte (hopelijk ooit in de toekomst) en viewport afmetingen</p>
+                            </header>
+                            <div class="article__body">
+                                <h4 class="article__body__title">Art direction</h4>
+                                <p class="article__paragraph">De eerste use case voor responsive images is art direction. Je wil ten volle gebruik maken van de viewport en de afbeelding zo optimaal weergeven.</p>
+                                <p class="article__paragraph">Stel je hebt een prachtige afbeelding van het Oslo Opera House. Op desktop knalt ie lekker over de ganse breedte maar als je hem op mobiel wil tonen dan moet je hem schalen. Daar gaan de mooie details. Met <code>&lt;picture&gt;</code> is er nu wel een oplossing. Voor desktop een lekkere grote afbeelding en voor mobiel en kleinere afbeelding, met een andere compositie (vandaar de art direction), waardoor je kan genieten van alle details. </p>
+                                <figure class="article__figure">
+                                    <img src="img/opera-house-640x200.jpg" alt="Oslo Opera House" class="article__img">
+                                    <figcaption class="article__figcaption">Oslo Opera House &copy; WikiMedia</figcaption>
+                                </figure>
+                                <p class="article__paragraph">Een voorbeeld</p>
+                                <pre><code>
+&lt;picture&gt;
+    &lt;!--[if IE 9]&gt;&lt;video style=&quot;display: none;&quot;&gt;&lt;![endif]--&gt;
+    &lt;source
+      media=&quot;(min-width: 768px)&quot;
+      srcset=&quot;image-medium.jpg&quot;&gt;
+    &lt;source
+      media=&quot;(min-width: 968px)&quot;
+      srcset=&quot;image-large.jpg&quot;&gt;
+    &lt;!--[if IE 9]&gt;&lt;/video&gt;&lt;![endif]--&gt;
+    &lt;img src=&quot;image-small.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/picture&gt;
+                                </code></pre>
+                                <pre><code>
+&lt;img
+  sizes=&quot;40vw,
+        (min-width: 768px) 100vw,
+        (min-width: 968px) 60vw&quot;
+  src=&quot;image-fallback.jpg&quot;
+  srcset=&quot;image-small.jpg 300w,
+          image-medium.jpg 400w,
+          image-large.jpg 610w&quot;
+  alt=&quot;&quot;&gt;
+                                </code></pre>
+                                <picture class="article__picture">
+                                  <source
+                                    media="(min-width: 968px)"
+                                    srcset="img/cyclist-610x400.jpg 1x,
+                                            img/ipad-1220x800.jpg 2x">
+                                  <source
+                                    media="(min-width: 768px)"
+                                    srcset="img/people-374x250.jpg 1x,
+                                            img/abstract-748x500.jpg 2x">
+                                  <source
+                                    media="(max-width: 767px)"
+                                    srcset="img/food-300x250.jpg 1x,
+                                            img/disco-600x500.jpg 2x">
+                                  <img src="img/tiger-300x250.jpg" alt="">
+                                </picture>
+                              <p>Sizes</p>
+                                <figure class="article__figure">
+                                    <img
+                                        src="img/rhino-450x300.jpg"
+                                        sizes="(min-width: 968px) 620px,
+                                               (min-width: 768px) 350px,
+                                               300px"
+                                        srcset="img/abstract-1220x800.jpg 1220w,
+                                                img/people-620x400.jpg 620w,
+                                                img/cyclist-350x200.jpg 350w,
+                                                img/ubuntu-300x200.jpg 300w"
+                                                alt="" class="article__img">
+                                        <figcaption class="article__figcaption">
+                                            testje met srcset
+                                        </figcaption>
+                                </figure>
+                            </div>
+                        </article>
+                        <aside class="article-aside">
+
+                        </aside>
+                    </div>
+                    <div class="col col--secondary">
+                        <ul class="block-list">
+                            <li class="block-list__item">
+                                <article class="ankeiler">
+                                    <a href="#" class="ankeiler__link">
+                                        <picture class="ankeiler__picture">
+                                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                            <source media="(min-width: 768px)" srcset="img/beach-125x125.jpg">
+                                            <!--[if IE 9]></video><![endif]-->
+                                            <img src="img/pussy-300x100.jpg" alt="" class="ankeiler__img">
+                                        </picture>
+                                        <div class="ankeiler__body">
+                                            <h5 class="ankeiler__title">"Blijf donderdag met de wagen weg uit Brussel"</h5>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                            <li class="block-list__item">
+                                <article class="ankeiler">
+                                    <a href="#" class="ankeiler__link">
+                                        <picture class="ankeiler__picture">
+                                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                            <source media="(min-width: 768px)" srcset="img/beach-125x125.jpg">
+                                            <!--[if IE 9]></video><![endif]-->
+                                            <img src="img/pussy-300x100.jpg" alt="" class="ankeiler__img">
+                                        </picture>
+                                        <div class="ankeiler__body">
+                                            <h5 class="ankeiler__title">Carrière, kinderen én een huis, moet dat? Socioloog pleit voor rustiger leven voor twintigers</h5>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                            <li class="block-list__item">
+                                <article class="ankeiler">
+                                    <a href="#" class="ankeiler__link">
+                                        <picture class="ankeiler__picture">
+                                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                            <source media="(min-width: 768px)" srcset="img/beach-125x125.jpg">
+                                            <!--[if IE 9]></video><![endif]-->
+                                            <img src="img/pussy-300x100.jpg" alt="" class="ankeiler__img">
+                                        </picture>
+                                        <div class="ankeiler__body">
+                                            <h5 class="ankeiler__title">Michel I kost Belg 336 euro per jaar</h5>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                            <li class="block-list__item">
+                                <article class="ankeiler">
+                                    <a href="#" class="ankeiler__link">
+                                        <picture class="ankeiler__picture">
+                                            <!--[if IE 9]><video style="display: none;"><![endif]-->
+                                            <source media="(min-width: 768px)" srcset="img/beach-125x125.jpg">
+                                            <!--[if IE 9]></video><![endif]-->
+                                            <img src="img/pussy-300x100.jpg" alt="" class="ankeiler__img">
+                                        </picture>
+                                        <div class="ankeiler__body">
+                                            <h5 class="ankeiler__title">Het leven zoals het is op seksslavenmarkt IS: "Waarom zou ik haar willen als ze geen tanden heeft?"</h5>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer" role="contentinfo">
+
+    </footer>
+</body>
+</html>
