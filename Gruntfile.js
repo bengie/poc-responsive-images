@@ -2,17 +2,19 @@
 module.exports = function(grunt) {
     grunt.initConfig({
 
+        pkg: grunt.file.readJSON('package.json'),
+
         'http-server': {
 
             'dev': {
 
                 // the server root directory
-                root: '/Applications/MAMP/htdocs/POC/responsive-images',
+                root: '<%= pkg.path %>',
 
-                port: 8100,
+                port: '<%= pkg.port %>',
                 // port: function() { return 8282; }
 
-                host: "127.0.0.1",
+                host: "<%= pkg.host %>",
 
                 cache: 5000,
                 showDir : true,
@@ -26,11 +28,20 @@ module.exports = function(grunt) {
 
             }
 
+        },
+        open: {
+            dev : {
+              path: 'http://<%= pkg.host %>:<%= pkg.port %>'
+            },
+            file: {
+              path: '<%= pkg.path %>'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-http-server');
+    grunt.loadNpmTasks('grunt-open');
 
     // Default task(s).
-    grunt.registerTask('default', ['http-server:dev']);
+    grunt.registerTask('default', ['open', 'http-server:dev']);
 };
