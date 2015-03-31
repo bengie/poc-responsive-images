@@ -42,8 +42,25 @@
                                     <li><code>&lt;picture&gt;</code> is voor art direction</li>
                                     <li><code>&lt;img sizes=&quot;&quot; srcset=&quot;&quot;&gt;</code> is voor responsive images</li>
                                     <li>Je mag eender welke <code>[length]</code> (vw, px, em, ...) value gebruiken voor <code>sizes="</code> </li>
+                                    <li>Voor <code>source</code> moet je bij je hoogste breakpoint (<code>media=""</code>) beginnen</li>
+                                    <li>IE en Firefox moeten ook een <code>source</code> hebben voor je kleinste breakpoint. Enkel de <code>img</code> volstaat niet</li>
 
                                 </ol>
+                                <pre><code>
+&lt;picture&gt;
+    &lt;!--[if IE 9]&gt;&lt;video style=&quot;display: none;&quot;&gt;&lt;![endif]--&gt;
+    &lt;source
+      media=&quot;(min-width: 968px)&quot;
+      srcset=&quot;image-large.jpg&quot;&gt;
+    &lt;source
+      media=&quot;(min-width: 768px)&quot;
+      srcset=&quot;image-medium.jpg&quot;&gt;
+    &lt;source
+      srcset=&quot;image-small.jpg&quot;&gt;
+    &lt;!--[if IE 9]&gt;&lt;/video&gt;&lt;![endif]--&gt;
+    &lt;img src=&quot;image-fallback.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/picture&gt;
+                                </code></pre>
                                 <h4 class="article__body__title">Pro</h4>
                                 <!-- <p class="article__paragraph"></p> -->
                                 <ol class="article__list">
@@ -94,7 +111,7 @@
                                     <li>Extra lijnen CSS en HTML, <small>alhoewel dat het voor CSS wel eens goed kan meevallen</small></li>
                                     <li>Is nog buggy. Bvb Chrome heeft moeite met absolute values voor <code>sizes=""</code>. Je moet refreshen om bij breakpoint change de correcte image te krijgen</li>
                                     <li>inline media queries</li>
-                                    <li>Geen JS = geen afbeeldingen, enkel een <code>alt=""</code>. Voor accessibility en crawlers moet het <code>alt</code> atrribuut dus ingevuld zijn, maar dat doen we toch altijd ;-)</li>
+                                    <li>Geen JS = fallback naar <code>src</code> in de <code>img</code>, </li>
                                     <li>Kan een gepruts worden om dit initieel allemaal op te zetten en meer afbeeldingen nodig</li>
                                     <li>Support in IE8:
                                         <ul>

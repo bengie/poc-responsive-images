@@ -46,6 +46,44 @@
             <img src="img/pussy-300x100.jpg" alt="">
         </picture>
 
+         <section class="page-main-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col col--primary">
+                        <p>Omdat Thymeleaf 2.1 nog de XML parsers gebruikt, welke de niet-afgesloten tags niet toelaat, moeten we de code aanpassen. In Thymeleaf 3.0 zal dit gefixt zijn. Meer info <a href="https://github.com/thymeleaf/thymeleaf-extras-conditionalcomments/issues/4#issuecomment-87615055">in de Github issue</a></p>
+
+                        <pre><code>
+&lt;picture&gt;
+    &lt;!--[if IE 9]&gt;
+        &lt;video style=&quot;display: none;&quot;&gt;
+            &lt;source
+              media=&quot;(min-width: 968px)&quot;
+              srcset=&quot;image-large.jpg&quot;&gt;
+            &lt;source
+                media=&quot;(min-width: 768px)&quot;
+                srcset=&quot;image-medium.jpg&quot;&gt;
+            &lt;source
+                srcset=&quot;image-small.jpg&quot;&gt;
+        &lt;/video&gt;
+    &lt;![endif]--&gt;
+    &lt;!--[if !IE 9]&gt;&lt;!--&gt;
+        &lt;source
+          media=&quot;(min-width: 968px)&quot;
+          srcset=&quot;image-large.jpg&quot;&gt;
+        &lt;source
+          media=&quot;(min-width: 768px)&quot;
+          srcset=&quot;image-medium.jpg&quot;&gt;
+        &lt;source
+          srcset=&quot;image-small.jpg&quot;&gt;
+    &lt;!--&lt;![endif]--&gt;
+    &lt;img src=&quot;image-small.jpg&quot; alt=&quot;&quot;&gt;
+&lt;/picture&gt;
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 
     </main>
