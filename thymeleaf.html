@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>POC Responsive Images</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lt IE 9]>
+        <link rel=stylesheet href="css/ie.css">
+    <![endif]-->
+    <script src="js/html5shiv.min.js"></script>
+
+</head>
+<body>
+    <header class="page-header">
+        <div class="container">
+            <nav class="nav nav--primary" role="navigation">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">With Polyfill</a></li>
+                    <li class="nav__item"><a href="without.html" class="nav__link">Without Polyfill</a></li>
+                    <li class="nav__item"><a href="legacy.html" class="nav__link">Legacy</a></li>
+                    <li class="nav__item is-active"><a href="thymeleaf.html" class="nav__link">Thymeleaf</a></li>
+                    <li class="nav__item"><a href="overzicht.html" class="nav__link">Overzicht</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-page-content" role="main">
+        <picture class="chapeau">
+            <!--[if IE 9]>
+                <video style="display: none;">
+                    <source media="(min-width: 968px)" srcset="img/cross-1440x500.jpg" />
+                    <source media="(min-width: 768px)" srcset="img/berlin-100x400.jpg" />
+                    <source srcset="img/para-300x480.jpg" />
+                </video>
+            <![endif]-->
+            <!--[if !IE 9]><!-->
+                <source media="(min-width: 968px)" srcset="img/cricket-1440x500.jpg" />
+                <source media="(min-width: 768px)" srcset="img/surfer-1000x400.jpg" />
+                <source srcset="img/para-300x480.jpg" />
+            <!--<![endif]-->
+            <img src="img/cyclist-1220x800.jpg" alt="" class="chapeau__img">
+        </picture>
+
+        <picture>
+            <img src="img/pussy-300x100.jpg" alt="">
+        </picture>
+
+
+
+    </main>
+    <footer class="page-footer" role="contentinfo">
+
+    </footer>
+    <script src="js/picturefill.min.js" ></script>
+</body>
+</html>
